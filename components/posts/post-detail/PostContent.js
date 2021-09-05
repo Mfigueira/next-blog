@@ -3,12 +3,10 @@ import Image from 'next/image';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-import PostHeader from './post-header';
-import classes from './post-content.module.css';
+import PostHeader from './PostHeader';
+import classes from './PostContent.module.css';
 
-function PostContent(props) {
-  const { post } = props;
-
+const PostContent = ({ post }) => {
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
@@ -62,6 +60,6 @@ function PostContent(props) {
       <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
     </article>
   );
-}
+};
 
 export default PostContent;

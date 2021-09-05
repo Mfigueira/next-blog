@@ -1,9 +1,7 @@
-import PostItem from './post-item';
-import classes from './posts-grid.module.css';
+import PostItem from './PostItem';
+import classes from './PostsGrid.module.css';
 
-function PostsGrid(props) {
-  const { posts } = props;
-
+const PostsGrid = ({ posts }) => {
   return (
     <ul className={classes.grid}>
       {posts.map((post) => (
@@ -11,6 +9,6 @@ function PostsGrid(props) {
       ))}
     </ul>
   );
-}
+};
 
 export default PostsGrid;

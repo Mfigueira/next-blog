@@ -1,22 +1,21 @@
 import Head from 'next/head';
-import { Fragment } from 'react';
-
-import PostContent from '../../components/posts/post-detail/post-content';
-import { getPostData, getPostsFiles } from '../../lib/posts-util';
+import PostContent from '../../components/posts/post-detail/PostContent';
+import { getPostData, getPostsFiles } from '../../helpers/posts-util';
 
 const PostDetailPage = ({ post }) => {
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{post.title}</title>
         <meta name="description" content={post.excerpt} />
       </Head>
+
       <PostContent post={post} />
-    </Fragment>
+    </>
   );
 };
 
-export function getStaticProps(context) {
+export const getStaticProps = (context) => {
   const { params } = context;
   const { slug } = params;
 
@@ -28,9 +27,9 @@ export function getStaticProps(context) {
     },
     revalidate: 600,
   };
-}
+};
 
-export function getStaticPaths() {
+export const getStaticPaths = () => {
   const postFilenames = getPostsFiles();
 
   const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ''));
@@ -39,6 +38,6 @@ export function getStaticPaths() {
     paths: slugs.map((slug) => ({ params: { slug: slug } })),
     fallback: false,
   };
-}
+};
 
 export default PostDetailPage;
