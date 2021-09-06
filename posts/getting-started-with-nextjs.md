@@ -26,8 +26,8 @@ In this article, we'll dive into the core concepts and features NextJS has to of
 - Image Optimization
 - Much More
 
-## File-based Routing
+## An example Image
 
-![Create routes via your file + folder structure](nextjs-file-based-routing.png)
+![JS Code](js-code.jpg)
 
-... More content ...
+More content ...

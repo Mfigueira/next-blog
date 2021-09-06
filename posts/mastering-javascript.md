@@ -8,10 +8,10 @@ isFeatured: false
 
 JavaScript powers the web - it's **the** most important programming language you need to know as a web developer.
 
-For example, you should understand code like this:
+Here's an example:
 
 ```js
-const basics = 'Okay, that should not be too difficult actually';
+const basics = 'This is a basic functionality in JS';
 
 const printBasics = () => {
   console.log(basics):
@@ -20,4 +20,4 @@ const printBasics = () => {
 printBasics();
 ```
 
-Learn more about it [here](https://academind.com).
+More content ...
