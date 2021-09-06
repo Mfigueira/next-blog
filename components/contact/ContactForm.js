@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
+import Notification from '../ui/Notification';
+import classes from './ContactForm.module.css';
 
-import classes from './contact-form.module.css';
-import Notification from '../ui/notification';
-
-async function sendContactData(contactDetails) {
+const sendContactData = async (contactDetails) => {
   const response = await fetch('/api/contact', {
     method: 'POST',
     body: JSON.stringify(contactDetails),
@@ -17,9 +16,9 @@ async function sendContactData(contactDetails) {
   if (!response.ok) {
     throw new Error(data.message || 'Something went wrong!');
   }
-}
+};
 
-function ContactForm() {
+const ContactForm = () => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredName, setEnteredName] = useState('');
   const [enteredMessage, setEnteredMessage] = useState('');
@@ -37,11 +36,8 @@ function ContactForm() {
     }
   }, [requestStatus]);
 
-  async function sendMessageHandler(event) {
+  const handleSubmitMessage = async (event) => {
     event.preventDefault();
-
-    // optional: add client-side validation
-
     setRequestStatus('pending');
 
     try {
@@ -58,7 +54,7 @@ function ContactForm() {
       setRequestError(error.message);
       setRequestStatus('error');
     }
-  }
+  };
 
   let notification;
 
@@ -89,23 +85,23 @@ function ContactForm() {
   return (
     <section className={classes.contact}>
       <h1>How can I help you?</h1>
-      <form className={classes.form} onSubmit={sendMessageHandler}>
+      <form className={classes.form} onSubmit={handleSubmitMessage}>
         <div className={classes.controls}>
           <div className={classes.control}>
-            <label htmlFor='email'>Your Email</label>
+            <label htmlFor="email">Your Email</label>
             <input
-              type='email'
-              id='email'
+              type="email"
+              id="email"
               required
               value={enteredEmail}
               onChange={(event) => setEnteredEmail(event.target.value)}
             />
           </div>
           <div className={classes.control}>
-            <label htmlFor='name'>Your Name</label>
+            <label htmlFor="name">Your Name</label>
             <input
-              type='text'
-              id='name'
+              type="text"
+              id="name"
               required
               value={enteredName}
               onChange={(event) => setEnteredName(event.target.value)}
@@ -113,10 +109,10 @@ function ContactForm() {
           </div>
         </div>
         <div className={classes.control}>
-          <label htmlFor='message'>Your Message</label>
+          <label htmlFor="message">Your Message</label>
           <textarea
-            id='message'
-            rows='5'
+            id="message"
+            rows="5"
             required
             value={enteredMessage}
             onChange={(event) => setEnteredMessage(event.target.value)}
@@ -124,9 +120,10 @@ function ContactForm() {
         </div>
 
         <div className={classes.actions}>
-          <button>Send Message</button>
+          <button type="submit">Send Message</button>
         </div>
       </form>
+
       {notification && (
         <Notification
           status={notification.status}
@@ -136,6 +133,6 @@ function ContactForm() {
       )}
     </section>
   );
-}
+};
 
 export default ContactForm;
